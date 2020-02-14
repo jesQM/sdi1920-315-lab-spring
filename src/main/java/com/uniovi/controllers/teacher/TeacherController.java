@@ -39,13 +39,13 @@ public class TeacherController {
 	@RequestMapping(value="/teacher/add", method=RequestMethod.POST )
 	public String setTeacher(@ModelAttribute Teacher teacher){
 		service.addTeacher(teacher);
-		return "redirect:./list";
+		return "redirect:/teacher/list";
 	}
 	
 	@RequestMapping("/teacher/delete/{id}" )
-	public String deleteMark(@PathVariable String id){ //GET with param id
+	public String deleteTeacher(@PathVariable String id){ //GET with param id
 		service.deleteTeacher(id);
-		return "redirect:./list";
+		return "redirect:/teacher/list";
 	}
 	
 	@RequestMapping("/teacher/details/{id}" )
@@ -64,6 +64,6 @@ public class TeacherController {
 	@RequestMapping(value="/teacher/edit", method=RequestMethod.POST )
 	public String setEdit(@ModelAttribute Teacher id){
 		service.swap(id);
-		return "redirect:./list";
+		return "redirect:/teacher/list";
 	}
 }
