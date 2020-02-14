@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="fragments/head" />
+
+<body>
+	<!-- nav.html -->
+	<nav class="navbar navbar-inverse">
+	    <div class="container-fluid">
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	            <img src="/img/student-48.png" alt="logo" />
+	        </div>
+	        <div class="collapse navbar-collapse" id="myNavbar">
+	            <ul class="nav navbar-nav">
+	                <li class="active"><a href="/teacher/list">Ver Profes</a></li>
+	                <li><a href="/teacher/add">Agregar</a></li>
+	                <li><a href="/teacher/delete">Borrar</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+
+
+
+	<div class="container">
+	  <h2>Teachers</h2>                                                                               
+	  <div class="table-responsive">          
+	  <table class="table table-hover">
+	    </thead>
+		<tbody>
+		  <tr th:each="teacher : ${teacherList}">
+		    <td th:text="${teacher.DNI}"> 1</td>
+		    <td th:text="${teacher.Nombre}"> Ejercicio 3</td>
+		    <td th:text="${teacher.Apellidos}">10</td>
+		    <td><a th:href="${'/teacher/details/' + teacher.DNI}">detalles</a></td>
+		    <td><a th:href="${'/teacher/edit/' + teacher.DNI}">modificar</a></td>
+		    <td><a th:href="${'/teacher/delete/' + teacher.DNI}">eliminar</a></td>
+		  </tr>
+		</tbody>
+	  </table>
+	  </div>
+	</div>
+
+</body>
+
+</html>
