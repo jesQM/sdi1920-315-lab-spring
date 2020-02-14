@@ -18,12 +18,12 @@ public class TeacherController {
 	
 	@RequestMapping("/teacher/list")
 	public String getList() {
-		return service.getTeacher().toString();
+		return service.getTeachers().toString();
 	}
 	
 	@RequestMapping(value="/teacher/add", method=RequestMethod.POST )
 	public String setTeacher(@ModelAttribute Teacher teacher){
-		service.addMark(teacher);
+		service.addTeacher(teacher);
 		return "added: " + teacher;
 	}
 	
