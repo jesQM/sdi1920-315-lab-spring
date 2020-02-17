@@ -23,6 +23,12 @@ public class MarksControllers {
 		return "mark/list";
 	}
 	
+	@RequestMapping("/mark/list/update")
+	public String updateList(Model model){
+		model.addAttribute("markList", marksService.getMarks() );
+		return "mark/list :: tableMarks";
+	}
+	
 	@RequestMapping(value="/mark/add") // For the GET, to return add.html
 	public String getMark(){
 		return "mark/add";
