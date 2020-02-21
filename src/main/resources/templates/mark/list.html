@@ -13,8 +13,6 @@
 	<!-- Barra de Navegación superior -->
     <nav th:replace="fragments/nav" />
 
-
-
 	<div class="container">
 	  <h2>Notas</h2>
 	  <p>Las notas que actualmente figuran en el sistema son las siguientes:</p>
@@ -31,8 +29,8 @@
 		    <thead>
 		      <tr>
 		        <th class="col-md-1">id</th>
-		        <th>Descripción</th>
-		        <th>Puntuación</th>
+		        <th th:text="#{mark.description}"></th>
+                <th th:text="#{mark.points}"></th>
 				<th class="col-md-1"> </th>
 				<th class="col-md-1"> </th>
 				<th class="col-md-1"> </th>
@@ -43,9 +41,9 @@
 			    <td th:text="${mark.id}"> 1</td>
 			    <td th:text="${mark.description}"> Ejercicio 1</td>
 			    <td th:text="${mark.score}">10</td>
-			    <td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-			    <td><a th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
-			    <td><a th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
+			    <td><a th:href="${'/mark/details/' + mark.id} " th:text="#{list.details}">detalles</a></td>
+                <td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{list.modify}">modificar</a></td>
+                <td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{list.delete}">eliminar</a></td>
 			  </tr>
 			</tbody>
 		  </table>

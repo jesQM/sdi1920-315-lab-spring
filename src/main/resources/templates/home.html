@@ -7,13 +7,12 @@
     <nav th:replace="fragments/nav" />
     <div class="container" style="text-align: center">
         <h2 th:text="#{welcome.message}"></h2>
-        <h3>Esta es una zona privada la web</h3>
-        <p>
-            Usuario Autenticado como :
+        <h3 th:text="#{home.private_message}"></h3>
+        <p th:text="#{home.logged_in_as}">
             <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
 		</p>
 		
-		<p>
+		<p th:text="#{home.user_marks}">
 		    Notas del usuario
 		</p>
 		<div class="table-responsive">
@@ -21,8 +20,8 @@
 		        <thead>
 		            <tr>
 		                <th class="col-md-1">id</th>
-		                <th>Descripción</th>
-		                <th>Puntuación</th>
+		                <th th:text="#{mark.description}"></th>
+		                <th th:text="#{mark.points}"></th>
 		                <th class="col-md-1"> </th>
 		                <th class="col-md-1"> </th>
 		                <th class="col-md-1"> </th>
@@ -33,9 +32,9 @@
 		                <td th:text="${mark.id}"> 1</td>
 		                <td th:text="${mark.description}"> Ejercicio 1</td>
 		                <td th:text="${mark.score}">10</td>
-		                <td><a th:href="${'/mark/details/' + mark.id}">detalles</a></td>
-		                <td><a th:href="${'/mark/edit/' + mark.id}">modificar</a></td>
-		                <td><a th:href="${'/mark/delete/' + mark.id}">eliminar</a></td>
+		                <td><a th:href="${'/mark/details/' + mark.id} " th:text="#{list.details}">detalles</a></td>
+		                <td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{list.modify}">modificar</a></td>
+		                <td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{list.delete}">eliminar</a></td>
 		            </tr>
 		        </tbody>
 		    </table>
