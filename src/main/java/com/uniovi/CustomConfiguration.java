@@ -23,8 +23,7 @@ public class CustomConfiguration implements WebMvcConfigurer{
 	
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
-		LocaleChangeInterceptor localeChangeInterceptor =
-		new LocaleChangeInterceptor();
+		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("lang");
 		return localeChangeInterceptor;
 	}

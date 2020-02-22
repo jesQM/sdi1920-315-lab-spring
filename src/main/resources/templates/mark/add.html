@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Notaneitor</title>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
+
+<head th:replace="fragments/head" />
+
 <body>
 
     <!-- Barra de Navegación superior -->
@@ -15,7 +10,7 @@
 
 <div class="container">
   <h2 th:text="#{nav.mark.add}"></h2>
-  <form class="form-horizontal" method="post" action="/mark/add">
+  <form class="form-horizontal" method="post" action="/mark/add" th:object="${mark}">
     <div class="form-group">
     <label class="control-label col-sm-2" for="user" th:text="#{mark.pupil}">Alumno:</label>
     <div class="col-sm-10" th:if="${usersList != null and not #lists.isEmpty(usersList)}">
@@ -23,6 +18,7 @@
             <option th:each="user : ${usersList}" th:value="${user.id}" th:text="${user.dni}+' - '+${user.name}+' ' +${user.lastName} ">
                 Usuario
             </option>
+            <span class="text-danger" th:if="${#fields.hasErrors('user')}" th:errors="*{user}"/>
         </select>
     </div>
 	</div>
@@ -31,6 +27,7 @@
       <label class="control-label col-sm-2" for="description" th:text="#{mark.description}">Descripcion:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" name="description" placeholder="Ejemplo Ejercicio 1" required="true" />
+        <span class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"/>
       </div>
     </div>
     
@@ -38,6 +35,7 @@
       <label class="control-label col-sm-2" for="pwd" th:text="#{mark.points}">Puntuación:</label>
       <div class="col-sm-10">          
         <input type="number" class="form-control" name="score" placeholder="Entre 0 y 10" required="true" />
+        <span class="text-danger" th:if="${#fields.hasErrors('score')}" th:errors="*{score}"/>
       </div>
     </div>
     

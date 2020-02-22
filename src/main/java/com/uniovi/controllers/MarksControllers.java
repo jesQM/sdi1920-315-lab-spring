@@ -3,6 +3,8 @@ package com.uniovi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.uniovi.entities.Mark;
 import com.uniovi.services.MarksService;
 import com.uniovi.services.UsersService;
+import com.uniovi.validators.MarkAddFormValidator;
 
 @Controller
 public class MarksControllers {
@@ -20,6 +23,9 @@ public class MarksControllers {
 
 	@Autowired
 	private UsersService usersService;
+
+	@Autowired
+	private MarkAddFormValidator markAddFormValidator;
 	
 	@RequestMapping("/mark/list")
 	public String getList(Model model){
@@ -34,7 +40,11 @@ public class MarksControllers {
 	}
 	
 	@RequestMapping(value="/mark/add", method=RequestMethod.POST )
-	public String setMark(@ModelAttribute Mark mark){
+	public String setMark(@Validated Mark mark, BindingResult result){
+		markAddFormValidator.validate(mark, result);
+		if (result.hasErrors())
+			return "mark/add";
+		
 		marksService.addMark(mark);
 		return "redirect:/mark/list";
 	}
@@ -56,6 +66,7 @@ public class MarksControllers {
 	@RequestMapping(value="/mark/add")
 	public String getMark(Model model){
 		model.addAttribute("usersList", usersService.getUsers());
+		model.addAttribute("mark", new Mark());
 		return "mark/add";
 	}
 	
@@ -67,11 +78,16 @@ public class MarksControllers {
 	}
 	
 	@RequestMapping(value="/mark/edit/{id}", method=RequestMethod.POST)
-	public String setEdit(Model model, @PathVariable Long id, @ModelAttribute Mark mark){
+	public String setEdit(Model model, @PathVariable Long id, @Validated@ModelAttribute Mark mark, BindingResult result){
+		
 		Mark original = marksService.getMark(id);
 		// modificar solo score y description
 		original.setScore(mark.getScore());
 		original.setDescription(mark.getDescription());
+		markAddFormValidator.validate(original, result);
+		if (result.hasErrors())
+			return "mark/edit";
+		
 		marksService.addMark(original);
 		return "redirect:/mark/details/"+id;
 	}

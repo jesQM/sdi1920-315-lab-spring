@@ -1,10 +1,10 @@
 package com.uniovi.controllers.teacher;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.uniovi.entities.Teacher;
 import com.uniovi.services.teacher.TeacherService;
+import com.uniovi.validators.TeacherAddFormValidator;
 
 @Controller
 public class TeacherController {
 	
 	@Autowired
 	private TeacherService service;
+	
+	@Autowired
+	private TeacherAddFormValidator teacherAddFormValidator;
 	
 	@RequestMapping("/teacher/teacher")
 	public String getHome() {
@@ -32,12 +36,17 @@ public class TeacherController {
 	
 	
 	@RequestMapping(value="/teacher/add")
-	public String setTeacher(){
+	public String setTeacher(Model model){
+		model.addAttribute("teacher", new Teacher());
 		return "teacher/add";
 	}
 	
 	@RequestMapping(value="/teacher/add", method=RequestMethod.POST )
-	public String setTeacher(@ModelAttribute Teacher teacher){
+	public String setTeacher(@Validated@ModelAttribute Teacher teacher, BindingResult result){
+		teacherAddFormValidator.validate(teacher, result);
+		if (result.hasErrors())
+			return "teacher/add";
+		
 		service.addTeacher(teacher);
 		return "redirect:/teacher/list";
 	}

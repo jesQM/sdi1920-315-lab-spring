@@ -11,15 +11,19 @@
 <body>
 	
 	<h2>Add</h2>
-    <form method="post" action="/teacher/add">
+    <form method="post" action="/teacher/add" th:object="${teacher}">
 		DNI:<br>
-        <input type="text" name="DNI"></br>
+        <input type="text" name="DNI" required="true" ></br>
+        <span class="text-danger" th:if="${#fields.hasErrors('DNI')}" th:errors="*{DNI}"/>
         Nombre:<br>
-        <input type="text" name="Nombre"></br>
+        <input type="text" name="Nombre" required="true" ></br>
+        <span class="text-danger" th:if="${#fields.hasErrors('Nombre')}" th:errors="*{Nombre}"/>
         Apellidos:<br>
-        <input type="text" name="Apellidos"></br>
+        <input type="text" name="Apellidos" required="true" ></br>
+        <span class="text-danger" th:if="${#fields.hasErrors('Apellidos')}" th:errors="*{Apellidos}"/>
         Categoría:<br>
-        <input type="text" name="Categoria"></br>
+        <input type="text" name="Categoria" required="true" ></br>
+        <span class="text-danger" th:if="${#fields.hasErrors('Categoria')}" th:errors="*{Categoria}"/>
         <input type="submit" value="Send">
     </form>
     
