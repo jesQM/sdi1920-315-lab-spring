@@ -62,7 +62,7 @@ public class MarksControllers {
 		
 		Page<Mark> marks = marksService.getMarksForUser(pageable, user);
 		model.addAttribute("markList", marks.getContent());
-		return "mark/list :: tableMarks";
+		return "fragments/markTable :: tableMarks";
 	}
 
 	@RequestMapping(value = "/mark/add", method = RequestMethod.POST)
