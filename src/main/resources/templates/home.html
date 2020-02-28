@@ -15,30 +15,7 @@
 		<p th:text="#{home.user_marks}">
 		    Notas del usuario
 		</p>
-		<div class="table-responsive">
-		    <table class="table table-hover">
-		        <thead>
-		            <tr>
-		                <th class="col-md-1">id</th>
-		                <th th:text="#{mark.description}"></th>
-		                <th th:text="#{mark.points}"></th>
-		                <th class="col-md-1"> </th>
-		                <th class="col-md-1"> </th>
-		                <th class="col-md-1"> </th>
-		            </tr>
-		        </thead>
-		        <tbody>
-		            <tr th:each="mark : ${markList}">
-		                <td th:text="${mark.id}"> 1</td>
-		                <td th:text="${mark.description}"> Ejercicio 1</td>
-		                <td th:text="${mark.score}">10</td>
-		                <td><a th:href="${'/mark/details/' + mark.id} " th:text="#{list.details}">detalles</a></td>
-		                <td><a th:href="${'/mark/edit/' + mark.id}" th:text="#{list.modify}">modificar</a></td>
-		                <td><a th:href="${'/mark/delete/' + mark.id}" th:text="#{list.delete}">eliminar</a></td>
-		            </tr>
-		        </tbody>
-		    </table>
-		</div>
+		<div th:replace="fragments/markTable"></div>
 		
 	</div>
 	<footer th:replace="fragments/footer"/>

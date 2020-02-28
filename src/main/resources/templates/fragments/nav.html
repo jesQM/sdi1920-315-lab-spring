@@ -24,10 +24,10 @@
             		</ul>
             	</li>
             	
-            	<li id="users-menu" class="dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
+            	<li id="users-menu" class="dropdown">
             		<a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{nav.user.manager_message}">Gestión de Usuarios <span class="caret"></span> </a>
             		<ul class="dropdown-menu">
-            			<li><a href="/user/add" th:text="#{nav.user.add}">Agregar Usuario</a></li>
+            			<li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/user/add" th:text="#{nav.user.add}">Agregar Usuario</a></li>
             			<li><a href="/user/list" th:text="#{nav.user.list}">Ver Usuarios</a></li>
             		</ul>
             	</li>
