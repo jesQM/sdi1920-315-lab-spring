@@ -46,4 +46,8 @@ public class UsersService {
 	public void deleteUser(Long id) {
 		usersRepository. deleteById (id);
 	}
+	
+	public List<User> searchBySubstringInNameOrSurname(String substring) {
+		return usersRepository.searchBySubstringInNameOrSurname("%"+ substring.toLowerCase() +"%");
+	}
 }
