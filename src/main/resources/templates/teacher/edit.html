@@ -35,18 +35,18 @@
 
 <div class="container">
   <h2>Editar Profe</h2>
-  <form class="form-horizontal" method="post" th:action="${'/teacher/edit/'+ teacher.DNI}">
+  <form class="form-horizontal" method="post" th:action="${'/teacher/edit/'+ teacher.DNI}" th:object="${teacher}">
       <label class="control-label col-sm-2">DNI:</label>
-      <input th:value="${teacher.DNI}" type="text" class="form-control" name="description" placeholder="Ejemplo Ejercicio 1" required="true" />
+      <input th:value="${teacher.DNI}" type="text" class="form-control" name="dni" placeholder="Ejemplo Ejercicio 1" required="true" />
 
       <label class="control-label col-sm-2">Name:</label>
-      <input th:value="${teacher.Nombre}" type="text" class="form-control" name="description" placeholder="Ejemplo Ejercicio 1" required="true" />
+      <input th:value="${teacher.Nombre}" type="text" class="form-control" name="name" placeholder="Ejemplo Ejercicio 1" required="true" />
 
       <label class="control-label col-sm-2">Surname:</label>
-      <input th:value="${teacher.Apellidos}" type="text" class="form-control" name="description" placeholder="Ejemplo Ejercicio 1" required="true" />
+      <input th:value="${teacher.apellidos}" type="text" class="form-control" name="surname" placeholder="Ejemplo Ejercicio 1" required="true" />
       
       <label class="control-label col-sm-2">Category:</label>
-      <input th:value="${teacher.Categoria}" type="text" class="form-control" name="description" placeholder="Ejemplo Ejercicio 1" required="true" />
+      <input th:value="${teacher.Categoria}" type="text" class="form-control" name="category" placeholder="Ejemplo Ejercicio 1" required="true" />
       
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">

@@ -13,7 +13,7 @@ public class Teacher {
 	private String DNI;
 	
 	private String Nombre;
-	private String Apellidos;
+	private String apellidos;
 	private String Categoria;
 	
 //	@ManyToOne
@@ -23,10 +23,10 @@ public class Teacher {
 	
 	public Teacher(String dNI, String nombre, String apellidos, String categoria) {
 		super();
-		DNI = dNI;
-		Nombre = nombre;
-		Apellidos = apellidos;
-		Categoria = categoria;
+		this.DNI = dNI;
+		this.Nombre = nombre;
+		this.apellidos = apellidos;
+		this.Categoria = categoria;
 	}
 
 	public String getDNI() {
@@ -34,7 +34,7 @@ public class Teacher {
 	}
 
 	public void setDNI(String dNI) {
-		DNI = dNI;
+		this.DNI = dNI;
 	}
 
 	public String getNombre() {
@@ -42,15 +42,15 @@ public class Teacher {
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.Nombre = nombre;
 	}
 
 	public String getApellidos() {
-		return Apellidos;
+		return apellidos;
 	}
 
 	public void setApellidos(String apellidos) {
-		Apellidos = apellidos;
+		this.apellidos = apellidos;
 	}
 
 	public String getCategoria() {
@@ -58,13 +58,13 @@ public class Teacher {
 	}
 
 	public void setCategoria(String categoria) {
-		Categoria = categoria;
+		this.Categoria = categoria;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "Teacher [DNI=" + DNI + ", Nombre=" + Nombre + ", Apellidos=" + Apellidos + ", Categoria="
+		return "Teacher [DNI=" + DNI + ", Nombre=" + Nombre + ", Apellidos=" + apellidos + ", Categoria="
 				+ Categoria + "]";
 	}
 }
