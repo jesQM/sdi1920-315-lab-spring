@@ -20,6 +20,8 @@ import com.uniovi.tests.pageobjects.PO_EditTeacherView;
 import com.uniovi.tests.pageobjects.PO_HomeView;
 import com.uniovi.tests.pageobjects.PO_LoginView;
 import com.uniovi.tests.pageobjects.PO_NavView;
+import com.uniovi.tests.pageobjects.PO_Properties;
+import com.uniovi.tests.pageobjects.PO_RegisterView;
 import com.uniovi.tests.pageobjects.PO_View;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -93,5 +95,39 @@ public class NotaneitorComplementariosTest {
 		// Delete of teacher
 		e = PO_View.checkElement(driver, "free", "/html/body/div/div/table/tbody/tr/td/a");
 		e.get(2).click();
+	}
+	
+	@Test
+	public void Comp2_ProfeValido() {
+		// Login as admin when clicking teacher
+		PO_HomeView.clickOption(driver, "teacher", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, "99999988F", "123456");
+		
+		// Add a teacher
+		PO_NavView.clickOption(driver, "add", "text", "Add");
+		PO_AddTeacher.fillForm(driver, "87654321A", "Nombre", "Apellido", "Categoria");
+		
+		// Delete the teacher
+		List<WebElement> e = PO_View.checkElement(driver, "free", "/html/body/div/div/table/tbody/tr/td/a");
+		e.get(2).click();
+	}
+	
+	@Test
+	public void Comp2_ProfeInvalido() {
+		// Login as admin when clicking teacher
+		PO_HomeView.clickOption(driver, "teacher", "class", "btn btn-primary");
+		PO_LoginView.fillForm(driver, "99999988F", "123456");
+		
+		// Wrong DNI
+		PO_NavView.clickOption(driver, "add", "text", "Add");
+		PO_AddTeacher.fillForm(driver, "hola", "Nombre", "Apellido", "Categoria");
+
+		PO_AddTeacher.checkKey(driver, "Error.teacher.dni.format", PO_Properties.getSPANISH());
+		
+		// Duplicate DNI
+		PO_AddTeacher.fillForm(driver, "23456781A", "Nombre", "Apellido", "Categoria");
+		PO_NavView.clickOption(driver, "add", "text", "Add");
+		PO_AddTeacher.fillForm(driver, "23456781A", "Nombre", "Apellido", "Categoria");
+		PO_AddTeacher.checkKey(driver, "Error.teacher.dni.duplicate", PO_Properties.getSPANISH());
 	}
 }

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PO_AddTeacher {
+public class PO_AddTeacher extends PO_View {
 	public static void fillForm(WebDriver driver, String dnip, String nombrep, String apellidosp, String categoriap) {
 		WebElement dni = driver.findElement(By.name("DNI"));
 		dni.click();
